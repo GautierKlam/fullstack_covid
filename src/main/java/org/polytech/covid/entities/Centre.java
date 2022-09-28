@@ -22,7 +22,7 @@ public class Centre {
     private int id_centre;
     private String nom;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     @JoinColumn(name = "id_adresse",
     foreignKey =  @ForeignKey(name = "adresse_fk"),
     nullable = false)
