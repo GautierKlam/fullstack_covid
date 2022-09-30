@@ -1,5 +1,7 @@
 package org.polytech.covid.entities;
 
+import java.time.LocalDate;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,12 +19,9 @@ public class Reservation {
     private String statut;
 
     @OneToOne
-    private Creneau creneau;
+    private LocalDate date;
 
     @OneToOne
     private Patient patient;
-
-    @OneToOne
-    private Dose dose;
 
 }

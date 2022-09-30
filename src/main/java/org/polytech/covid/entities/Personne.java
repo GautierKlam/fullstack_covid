@@ -12,8 +12,7 @@ public class Personne {
     private String prenom;
     private String email;
     private String password;
-    private LocalDate date;
-    private int numero;
+    private int numero_telephone;
 
     @OneToOne
     private Adresse adresse;

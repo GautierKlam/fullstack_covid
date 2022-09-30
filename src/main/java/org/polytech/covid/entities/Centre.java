@@ -31,8 +31,7 @@ public class Centre {
     @OneToMany(mappedBy = "centre")
     private List<Medecin> medecins;
 
-    @OneToMany
-    private List<Vaccin> vaccins;
+
 
     
 

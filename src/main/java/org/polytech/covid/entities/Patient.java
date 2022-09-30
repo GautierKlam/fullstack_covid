@@ -18,8 +18,6 @@ public class Patient extends Personne {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_patient;
 
-    @OneToMany
-    private List<Dose> doses;
 
     @OneToMany
     private List<Reservation> reservations;
