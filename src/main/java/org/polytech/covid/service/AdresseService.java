@@ -17,5 +17,21 @@ public class AdresseService {
         return adresseDAO.findAll();
     }
 
-    
+    public Adresse getById(int id){
+        return adresseDAO.getReferenceById(id);
+        
+    }
+
+    public Adresse save(Adresse adresse){
+        return adresseDAO.save(adresse);
+    }
+
+    public Adresse update(int id, Adresse adresse){
+        adresse.setId(id);
+        return adresseDAO.save(adresse);
+    }
+
+    public void delete(int id){
+        adresseDAO.deleteById(id);
+    }
 }

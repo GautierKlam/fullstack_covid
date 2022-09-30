@@ -37,6 +37,9 @@ public class Adresse {
         this.pays = pays;
         this.complement = complement;
     }
+    public void setId(int id){
+        this.id_adresse = id;
+    }
     public void setVille(String ville) {
         this.ville = ville;
     }
