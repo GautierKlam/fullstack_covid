@@ -1,9 +1,5 @@
 package org.polytech.covid.entities;
 
-
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToOne;
 
@@ -19,6 +15,9 @@ public class Personne {
 
     @OneToOne
     private Adresse adresse;
+
+    public Personne() {
+    }
 
     public Personne(String nom, String prenom, String email, String password, int numero_telephone, Adresse adresse) {
         this.nom = nom;

@@ -22,12 +22,17 @@ public class Reservation {
     @OneToOne
     private Patient patient;
 
+
+    public Reservation() {
+    }
+
     public Reservation(String statut, LocalDate date, Patient patient) {
         this.statut = statut;
         this.date = date;
         this.patient = patient;
     }
 
+    
     public String getStatut() {
         return statut;
     }

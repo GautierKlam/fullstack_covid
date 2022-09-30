@@ -31,12 +31,17 @@ public class Centre {
     @OneToMany(mappedBy = "centre")
     private List<Medecin> medecins;
 
+
+    public Centre() {
+    }
+
     public Centre(String nom, Adresse adresse, List<Medecin> medecins) {
         this.nom = nom;
         this.adresse = adresse;
         this.medecins = medecins;
     }
 
+    
     public String getNom() {
         return nom;
     }

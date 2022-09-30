@@ -24,6 +24,10 @@ public class Medecin extends Personne {
     @ManyToOne
     private Centre centre;
 
+
+    public Medecin() {
+    }
+
     public Medecin(String nom, String prenom, String email, String password, int numero_telephone, Adresse adresse,List<Patient> patients, Centre centre) {
         super(nom,prenom, email, password, numero_telephone, adresse);
         this.patients = patients;
