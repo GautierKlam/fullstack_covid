@@ -1,6 +1,5 @@
 package org.polytech.covid.entities;
 
-import java.time.LocalDate;
 
 import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToOne;

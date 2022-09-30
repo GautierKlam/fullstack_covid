@@ -17,8 +17,6 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_reservation;
     private String statut;
-
-    @OneToOne
     private LocalDate date;
 
     @OneToOne

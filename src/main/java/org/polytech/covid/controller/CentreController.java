@@ -2,7 +2,6 @@ package org.polytech.covid.controller;
 
 import java.util.List;
 
-import org.polytech.covid.dao.CentreRepository;
 import org.polytech.covid.entities.Centre;
 import org.polytech.covid.service.CentreService;
 import org.springframework.beans.factory.annotation.Autowired;
