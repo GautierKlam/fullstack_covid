@@ -39,6 +39,10 @@ public class Patient extends Personne {
         return medecin;
     }
 
+    public void setId(int id){
+        this.id_patient = id;
+    }
+
     public void setReservations(List<Reservation> reservations) {
         this.reservations = reservations;
     }

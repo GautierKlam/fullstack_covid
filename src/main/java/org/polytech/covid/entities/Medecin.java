@@ -38,6 +38,10 @@ public class Medecin extends Personne {
         return centre;
     }
 
+    public void setId(int id){
+        this.id_medecin = id;
+    }
+
     public void setPatients(List<Patient> patients) {
         this.patients = patients;
     }

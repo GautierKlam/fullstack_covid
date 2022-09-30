@@ -49,6 +49,10 @@ public class Centre {
         return medecins;
     }
 
+    public void setId(int id){
+        this.id_centre = id;
+    }
+
     public void setNom(String nom) {
         this.nom = nom;
     }

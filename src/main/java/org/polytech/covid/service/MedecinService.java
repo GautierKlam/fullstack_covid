@@ -26,9 +26,9 @@ public class MedecinService {
         return medecinDAO.save(centre);
     }
 
-    public Medecin update(int id, Medecin centre){
+    public Medecin update(int id, Medecin medecin){
         medecin.setId(id);
-        return medecinDAO.save(centre);
+        return medecinDAO.save(medecin);
     }
 
     public void delete(int id){

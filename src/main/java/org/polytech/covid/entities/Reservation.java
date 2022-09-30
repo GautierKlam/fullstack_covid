@@ -40,6 +40,10 @@ public class Reservation {
         return patient;
     }
 
+    public void setId(int id){
+        this.id_reservation = id;
+    }
+
     public void setStatut(String statut) {
         this.statut = statut;
     }

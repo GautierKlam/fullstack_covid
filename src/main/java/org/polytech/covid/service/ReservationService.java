@@ -26,9 +26,9 @@ public class ReservationService {
         return reservationDAO.save(Reservation);
     }
 
-    public Reservation update(int id, Reservation Reservation){
+    public Reservation update(int id, Reservation reservation){
         reservation.setId(id);
-        return reservationDAO.save(Reservation);
+        return reservationDAO.save(reservation);
     }
 
     public void delete(int id){
