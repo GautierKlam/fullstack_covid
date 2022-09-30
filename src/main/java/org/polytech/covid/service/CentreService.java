@@ -19,5 +19,19 @@ public class CentreService {
 
     public Centre getById(int id){
         return centreDAO.getReferenceById(id);
+        
+    }
+
+    public Centre save(Centre centre){
+        return centreDAO.save(centre);
+    }
+
+    public Centre update(int id, Centre centre){
+        centre.setId(id);
+        return centreDAO.save(centre);
+    }
+
+    public void delete(int id){
+        centreDAO.deleteById(id);
     }
 }
