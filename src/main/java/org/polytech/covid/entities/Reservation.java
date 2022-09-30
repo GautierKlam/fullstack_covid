@@ -22,4 +22,34 @@ public class Reservation {
     @OneToOne
     private Patient patient;
 
+    public Reservation(String statut, LocalDate date, Patient patient) {
+        this.statut = statut;
+        this.date = date;
+        this.patient = patient;
+    }
+
+    public String getStatut() {
+        return statut;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public Patient getPatient() {
+        return patient;
+    }
+
+    public void setStatut(String statut) {
+        this.statut = statut;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public void setPatient(Patient patient) {
+        this.patient = patient;
+    }
+
 }

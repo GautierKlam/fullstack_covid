@@ -24,4 +24,27 @@ public class Patient extends Personne {
 
     @ManyToOne
     private Medecin medecin;
+
+    public Patient(String nom, String prenom, String email, String password, int numero_telephone, Adresse adresse,List<Reservation> reservations, Medecin medecin) {
+        super(nom, prenom, email, password, numero_telephone, adresse);
+        this.reservations = reservations;
+        this.medecin = medecin;
+    }
+
+    public List<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public Medecin getMedecin() {
+        return medecin;
+    }
+
+    public void setReservations(List<Reservation> reservations) {
+        this.reservations = reservations;
+    }
+
+    public void setMedecin(Medecin medecin) {
+        this.medecin = medecin;
+    }
+    
 }

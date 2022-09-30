@@ -31,7 +31,37 @@ public class Centre {
     @OneToMany(mappedBy = "centre")
     private List<Medecin> medecins;
 
+    public Centre(String nom, Adresse adresse, List<Medecin> medecins) {
+        this.nom = nom;
+        this.adresse = adresse;
+        this.medecins = medecins;
+    }
 
+    public String getNom() {
+        return nom;
+    }
+
+    public Adresse getAdresse() {
+        return adresse;
+    }
+
+    public List<Medecin> getMedecins() {
+        return medecins;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public void setAdresse(Adresse adresse) {
+        this.adresse = adresse;
+    }
+
+    public void setMedecins(List<Medecin> medecins) {
+        this.medecins = medecins;
+    }
+
+    
 
     
 
