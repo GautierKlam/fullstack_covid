@@ -17,6 +17,14 @@ public class CentreService {
         return centreDAO.findAll();
     }
 
+    public List<Centre> searchByVille(String ville){
+        return centreDAO.searchByAdresseVilleIgnoringCase(ville);
+    }
+
+    public List<Centre> searchByCodepostal(String codepostal){
+        return centreDAO.searchByAdresseCodepostal(codepostal);
+    }
+
     public Centre getById(int id){
         return centreDAO.getReferenceById(id);
         

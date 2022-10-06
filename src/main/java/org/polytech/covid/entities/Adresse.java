@@ -15,7 +15,7 @@ public class Adresse {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_adresse;
     private String ville;
-    private String code_postal;
+    private String codepostal;
     private String pays;
     private String complement;
 
@@ -23,9 +23,9 @@ public class Adresse {
     public Adresse() {
     }
 
-    public Adresse(String ville, String code_postal, String pays, String complement) {
+    public Adresse(String ville, String codepostal, String pays, String complement) {
         this.ville = ville;
-        this.code_postal = code_postal;
+        this.codepostal = codepostal;
         this.pays = pays;
         this.complement = complement;
     }
@@ -35,8 +35,8 @@ public class Adresse {
         return ville;
     }
 
-    public String getCode_postal() {
-        return code_postal;
+    public String getCodepostal() {
+        return codepostal;
     }
 
     public String getPays() {
@@ -55,8 +55,8 @@ public class Adresse {
         this.ville = ville;
     }
 
-    public void setCode_postal(String code_postal) {
-        this.code_postal = code_postal;
+    public void setCodepostal(String codepostal) {
+        this.codepostal = codepostal;
     }
 
     public void setPays(String pays) {

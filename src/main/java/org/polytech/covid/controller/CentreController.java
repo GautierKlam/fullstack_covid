@@ -1,5 +1,6 @@
 package org.polytech.covid.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.polytech.covid.entities.Centre;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -18,6 +20,16 @@ public class CentreController {
     
     @Autowired
     private CentreService centreService;
+
+    @GetMapping(path = "/centres/search")
+    public List<Centre> getAllSearch(
+        @RequestParam(name = "ville", required = false) String ville,
+        @RequestParam(name = "codepostal", required = false) String codepostal
+        ){
+        if (ville != null) return centreService.searchByVille(ville);
+        else if (codepostal != null) return centreService.searchByCodepostal(codepostal);
+        else return new ArrayList<Centre>();
+    }
 
     @GetMapping(path = "/centres")
     public List<Centre> getAll(){
@@ -28,6 +40,7 @@ public class CentreController {
     public Centre getCentre(@PathVariable int id){
         return centreService.getById(id);
     }
+
 
     @PostMapping(path = "/centre")
     public Centre save(@RequestBody Centre centre){
