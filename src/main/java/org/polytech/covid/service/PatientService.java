@@ -18,8 +18,11 @@ public class PatientService {
     }
 
     public Patient getById(int id){
-        return patientDAO.getReferenceById(id);
-        
+        return patientDAO.getReferenceById(id); 
+    }
+
+    public List<Patient> getByNom(String nom){
+        return patientDAO.searchByNom(nom); 
     }
 
     public Patient save(Patient Patient){

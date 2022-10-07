@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -21,6 +22,9 @@ public class Reservation {
 
     @OneToOne
     private Patient patient;
+
+    @ManyToOne
+    private Centre centre;
 
 
     public Reservation() {
@@ -59,6 +63,14 @@ public class Reservation {
 
     public void setPatient(Patient patient) {
         this.patient = patient;
+    }
+
+    public Centre getCentre() {
+        return centre;
+    }
+
+    public void setCentre(Centre centre) {
+        this.centre = centre;
     }
 
 }

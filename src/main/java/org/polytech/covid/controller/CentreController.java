@@ -23,11 +23,9 @@ public class CentreController {
 
     @GetMapping(path = "/centres/search")
     public List<Centre> getAllSearch(
-        @RequestParam(name = "ville", required = false) String ville,
-        @RequestParam(name = "codepostal", required = false) String codepostal
+        @RequestParam(name = "ville", required = false) String ville
         ){
         if (ville != null) return centreService.searchByVille(ville);
-        else if (codepostal != null) return centreService.searchByCodepostal(codepostal);
         else return new ArrayList<Centre>();
     }
 

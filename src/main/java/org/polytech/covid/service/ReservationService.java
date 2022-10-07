@@ -12,6 +12,7 @@ public class ReservationService {
     
     @Autowired
     private ReservationRepository reservationDAO;
+    private CentreService centreService;
 
     public List<Reservation> findAll(){
         return reservationDAO.findAll();
@@ -22,8 +23,9 @@ public class ReservationService {
         
     }
 
-    public Reservation save(Reservation Reservation){
-        return reservationDAO.save(Reservation);
+    public Reservation save(Reservation reservation){
+        reservation.setCentre(centreService.getByNom(reservation.getCentre().getNom()));
+        return reservationDAO.save(reservation);
     }
 
     public Reservation update(int id, Reservation reservation){

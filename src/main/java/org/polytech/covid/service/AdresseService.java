@@ -13,7 +13,7 @@ public class AdresseService {
     @Autowired
     private AdresseRepository adresseDAO;
 
-    private List<Adresse> findAll(){
+    public List<Adresse> findAll(){
         return adresseDAO.findAll();
     }
 

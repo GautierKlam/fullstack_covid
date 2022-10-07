@@ -31,7 +31,10 @@ public class Centre {
     @OneToMany(mappedBy = "centre")
     private List<Medecin> medecins;
 
+    @OneToMany(mappedBy = "centre")
+    private List<Reservation> reservations;
 
+    
     public Centre() {
     }
 

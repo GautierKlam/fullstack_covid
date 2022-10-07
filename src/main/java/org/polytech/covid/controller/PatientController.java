@@ -1,5 +1,6 @@
 package org.polytech.covid.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.polytech.covid.entities.Patient;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -23,6 +25,15 @@ public class PatientController {
     public List<Patient> getAll(){
         return patientService.findAll();
     }
+
+    @GetMapping(path = "/patients/search")
+    public List<Patient> getAllSearch(
+        @RequestParam(name = "nom", required = false) String nom
+        ){
+        if (nom != null) return patientService.getByNom(nom);
+        else return new ArrayList<Patient>();
+    }
+
 
     @GetMapping(path = "/patient/{id}")
     public Patient getPatient(@PathVariable int id){
