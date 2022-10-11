@@ -29,7 +29,7 @@ public class CentreController {
         else return new ArrayList<Centre>();
     }
 
-    @GetMapping(path = "/centres")
+    @GetMapping(path = "api/public/centres")
     public List<Centre> getAll(){
         return centreService.findAll();
     }
