@@ -18,7 +18,7 @@ public class CentreService {
     }
 
     public List<Centre> searchByVille(String ville){
-        return centreDAO.searchByAdresseVilleIgnoringCase(ville);
+        return centreDAO.searchByAdresseVilleStartingWithIgnoringCase(ville);
     }
 
     public List<Centre> searchByCodepostal(String codepostal){

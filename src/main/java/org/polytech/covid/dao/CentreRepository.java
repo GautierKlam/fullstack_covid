@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CentreRepository extends JpaRepository<Centre, Integer>{
-    List<Centre> searchByAdresseVilleIgnoringCase(String ville);
+    List<Centre> searchByAdresseVilleStartingWithIgnoringCase(String ville);
     List<Centre> searchByAdresseCodepostal(String codepostal);
     Centre searchByNom(String nom);
 }

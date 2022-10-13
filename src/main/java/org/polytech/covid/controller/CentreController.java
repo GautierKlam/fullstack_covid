@@ -21,7 +21,7 @@ public class CentreController {
     @Autowired
     private CentreService centreService;
 
-    @GetMapping(path = "/centres/search")
+    @GetMapping(path = "api/public/centres/search")
     public List<Centre> getAllSearch(
         @RequestParam(name = "ville", required = false) String ville
         ){
@@ -37,6 +37,11 @@ public class CentreController {
     @GetMapping(path = "/centres/{id}")
     public Centre getCentre(@PathVariable int id){
         return centreService.getById(id);
+    }
+
+    @GetMapping(path = "api/public/centres/{nom}")
+    public Centre getCentreName(@PathVariable String nom){
+        return centreService.getByNom(nom);
     }
 
 

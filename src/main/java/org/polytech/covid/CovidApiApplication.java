@@ -25,8 +25,8 @@ public class CovidApiApplication {
     CommandLineRunner runner   (CentreRepository centreInterface, AdresseRepository adresseInterface, MedecinRepository medecinInterface, PatientRepository patientInterface, ReservationRepository reservationInterface, AdministrateurRepository administrateurInterface){
         return args -> {
             centreInterface.save(new Centre("CHRU Nancy Brabois",new Adresse("Vandoeuvre-les-Nancy","54511","FRANCE","Rue de Morvan"), null));
-            centreInterface.save(new Centre("CHR Metz ",new Adresse("Thionville","57530","FRANCE","Allee du chateau"), null));
-            centreInterface.save(new Centre("CHRU Strasbourg ",new Adresse("Strasbourg","67000","FRANCE","place de l'hopitale"), null));
+            centreInterface.save(new Centre("CHR Metz",new Adresse("Thionville","57530","FRANCE","Allee du chateau"), null));
+            centreInterface.save(new Centre("CHRU Strasbourg",new Adresse("Strasbourg","67000","FRANCE","place de l'hopitale"), null));
 
 
            
