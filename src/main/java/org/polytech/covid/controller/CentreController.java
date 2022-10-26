@@ -12,16 +12,18 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("api/public/")
 public class CentreController {
     
     @Autowired
     private CentreService centreService;
 
-    @GetMapping(path = "api/public/centres/search")
+    @GetMapping(path = "/centres/search")
     public List<Centre> getAllSearch(
         @RequestParam(name = "ville", required = false) String ville
         ){
@@ -29,17 +31,13 @@ public class CentreController {
         else return new ArrayList<Centre>();
     }
 
-    @GetMapping(path = "api/public/centres")
+    @GetMapping(path = "/centres")
     public List<Centre> getAll(){
         return centreService.findAll();
     }
 
-    @GetMapping(path = "/centres/{id}")
-    public Centre getCentre(@PathVariable int id){
-        return centreService.getById(id);
-    }
 
-    @GetMapping(path = "api/public/centres/{nom}")
+    @GetMapping(path = "/centres/{nom}")
     public Centre getCentreName(@PathVariable String nom){
         return centreService.getByNom(nom);
     }

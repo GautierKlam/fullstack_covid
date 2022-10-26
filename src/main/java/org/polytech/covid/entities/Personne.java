@@ -11,7 +11,7 @@ public class Personne {
     private String prenom;
     private String email;
     private String password;
-    private int numero_telephone;
+    private int numero;
 
     @OneToOne
     private Adresse adresse;
@@ -19,12 +19,12 @@ public class Personne {
     public Personne() {
     }
 
-    public Personne(String nom, String prenom, String email, String password, int numero_telephone, Adresse adresse) {
+    public Personne(String nom, String prenom, String email, String password, int numero, Adresse adresse) {
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
         this.password = password;
-        this.numero_telephone = numero_telephone;
+        this.numero = numero;
         this.adresse = adresse;
     }
 
@@ -40,8 +40,8 @@ public class Personne {
         return password;
     }
 
-    public int getNumero_telephone() {
-        return numero_telephone;
+    public int getNumero() {
+        return numero;
     }
 
     public Adresse getAdresse() {
@@ -60,8 +60,8 @@ public class Personne {
         this.password = password;
     }
 
-    public void setNumero_telephone(int numero_telephone) {
-        this.numero_telephone = numero_telephone;
+    public void setNumero(int numero) {
+        this.numero = numero;
     }
 
     public void setAdresse(Adresse adresse) {

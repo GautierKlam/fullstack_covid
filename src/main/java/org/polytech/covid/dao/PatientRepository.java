@@ -9,4 +9,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PatientRepository extends JpaRepository<Patient, Integer>{
     List<Patient> searchByNom(String nom);
+    Patient searchByEmail(String email);
 }

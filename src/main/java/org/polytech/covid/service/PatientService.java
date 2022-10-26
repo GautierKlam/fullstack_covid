@@ -25,6 +25,10 @@ public class PatientService {
         return patientDAO.searchByNom(nom); 
     }
 
+    public Patient getByEmail(String email){
+        return patientDAO.searchByEmail(email); 
+    }
+
     public Patient save(Patient Patient){
         return patientDAO.save(Patient);
     }

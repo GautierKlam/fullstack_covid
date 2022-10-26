@@ -3,6 +3,7 @@ package org.polytech.covid.entities;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,7 +19,7 @@ public class Medecin extends Personne {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_medecin;
 
-    @OneToMany(mappedBy = "medecin")
+    @OneToMany(mappedBy = "medecin", fetch = FetchType.LAZY)
     private List<Patient> patients;
 
     @ManyToOne
