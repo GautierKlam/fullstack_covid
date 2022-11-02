@@ -25,10 +25,15 @@ public class AdministrateurController {
     public List<Administrateur> getAll(){
         return administrateurService.findAll();
     }
-
+/* 
     @GetMapping(path = "/administrateurs/{id}")
-    public Administrateur getMedecin(@PathVariable int id){
+    public Administrateur getAdministrateur(@PathVariable int id){
         return administrateurService.getById(id);
+    }
+*/
+    @GetMapping(path = "/administrateurs/{email}")
+    public Administrateur getAdministrateurByEmail(@PathVariable String email){
+        return administrateurService.getByEmail(email);
     }
 
     @PostMapping(path = "/administrateur")

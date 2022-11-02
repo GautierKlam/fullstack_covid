@@ -31,6 +31,11 @@ public class MedecinController {
         return medecinService.getById(id);
     }
 
+    @GetMapping(path = "/medecins/{email}")
+    public Medecin getMedecinByEmail(@PathVariable String email){
+        return medecinService.getByEmail(email);
+    }
+
     @PostMapping(path = "/medecin")
     public Medecin save(@RequestBody Medecin medecin){
         return medecinService.save(medecin);
