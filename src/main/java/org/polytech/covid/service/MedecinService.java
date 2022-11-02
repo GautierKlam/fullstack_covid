@@ -22,6 +22,10 @@ public class MedecinService {
         
     }
 
+    public Medecin getByEmail(String email){
+        return medecinDAO.searchByEmail(email);
+    }
+
     public Medecin save(Medecin centre){
         return medecinDAO.save(centre);
     }

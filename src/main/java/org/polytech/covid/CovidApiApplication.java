@@ -7,6 +7,7 @@ import org.polytech.covid.dao.MedecinRepository;
 import org.polytech.covid.dao.PatientRepository;
 
 import org.polytech.covid.dao.ReservationRepository;
+import org.polytech.covid.entities.Administrateur;
 import org.polytech.covid.entities.Adresse;
 import org.polytech.covid.entities.Centre;
 import org.springframework.boot.CommandLineRunner;
@@ -27,7 +28,7 @@ public class CovidApiApplication {
             centreInterface.save(new Centre("CHRU Nancy Brabois",new Adresse("Nancy","54511","FRANCE","Rue de Morvan"), null));
             centreInterface.save(new Centre("CHR Thionville",new Adresse("Metz","57530","FRANCE","Allee du chateau"), null));
             centreInterface.save(new Centre("CHRU Strasbourg",new Adresse("Strasbourg","67000","FRANCE","place de l'hopitale"), null));
-
+            administrateurInterface.save(new Administrateur("Tenede", "Bryan", "tenede@bryan.com", "password", 123456789, null, null));
 
            
         };

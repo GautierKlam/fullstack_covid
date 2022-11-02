@@ -21,6 +21,10 @@ public class AdministrateurService {
         return administrateurDAO.getReferenceById(id);  
     }
 
+    public Administrateur getByEmail(String email){
+        return administrateurDAO.searchByEmail(email);
+    }
+
     public Administrateur save(Administrateur admin){
         return administrateurDAO.save(admin);
     }
