@@ -24,25 +24,28 @@ public class Patient extends Personne {
     private List<Reservation> reservations;
 
     @ManyToOne
-    private Medecin medecin;
+    private Personnel personnel;
 
     
     public Patient() {
     }
 
-    public Patient(String nom, String prenom, String email, String password, int numero_telephone, Adresse adresse,List<Reservation> reservations, Medecin medecin) {
-        super(nom, prenom, email, password, numero_telephone, adresse);
+    public Patient(String nom, String prenom, String email, String password, List<Reservation> reservations, Personnel personnel) {
+        super(nom, prenom, email, password);
         this.reservations = reservations;
-        this.medecin = medecin;
+        this.personnel = personnel;
     }
 
+    public int getId() {
+        return id_patient;
+    }
 
     public List<Reservation> getReservations() {
         return reservations;
     }
 
-    public Medecin getMedecin() {
-        return medecin;
+    public Personnel getMedecin() {
+        return personnel;
     }
 
     public void setId(int id){
@@ -53,8 +56,8 @@ public class Patient extends Personne {
         this.reservations = reservations;
     }
 
-    public void setMedecin(Medecin medecin) {
-        this.medecin = medecin;
+    public void setMedecin(Personnel personnel) {
+        this.personnel = personnel;
     }
     
 }

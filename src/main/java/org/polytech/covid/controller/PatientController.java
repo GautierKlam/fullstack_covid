@@ -37,7 +37,7 @@ public class PatientController {
     }
 
 
-    @GetMapping(path = "/patient/{id}")
+    @GetMapping(path = "/patients/{id}")
     public Patient getPatient(@PathVariable int id){
         return patientService.getById(id);
     }

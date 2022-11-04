@@ -18,7 +18,7 @@ public class PatientService {
     }
 
     public Patient getById(int id){
-        return patientDAO.getReferenceById(id); 
+        return patientDAO.findById(id).get(); 
     }
 
     public List<Patient> getByNom(String nom){

@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "t_administrateur")
-public class Administrateur extends Personne {
+public class Personnel extends Personne {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,12 +18,16 @@ public class Administrateur extends Personne {
     @OneToOne
     private Centre centre;
 
-    public Administrateur() {
+    public Personnel() {
     }
 
-    public Administrateur(String nom, String prenom, String email, String password, int numero_telephone, Adresse adresse, Centre centre) {
-        super(nom, prenom, email, password, numero_telephone, adresse);
+    public Personnel(String nom, String prenom, String email, String password, Centre centre) {
+        super(nom, prenom, email, password);
         this.centre = centre;
+    }
+
+    public int getId(){
+        return id_admin;
     }
 
     public Centre getCentre() {

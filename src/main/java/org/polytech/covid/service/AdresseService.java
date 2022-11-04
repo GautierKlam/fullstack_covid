@@ -18,7 +18,7 @@ public class AdresseService {
     }
 
     public Adresse getById(int id){
-        return adresseDAO.getReferenceById(id);
+        return adresseDAO.findById(id).get();
         
     }
 

@@ -24,9 +24,7 @@ public class CentreController {
     private CentreService centreService;
 
     @GetMapping(path = "/centres/search")
-    public List<Centre> getAllSearch(
-        @RequestParam(name = "ville", required = false) String ville
-        ){
+    public List<Centre> getAllSearch(@RequestParam(name = "ville", required = false) String ville){
         if (ville != null) return centreService.searchByVille(ville);
         else return new ArrayList<Centre>();
     }
@@ -37,9 +35,9 @@ public class CentreController {
     }
 
 
-    @GetMapping(path = "/centres/{nom}")
-    public Centre getCentreName(@PathVariable String nom){
-        return centreService.getByNom(nom);
+    @GetMapping(path = "/centres/{id}")
+    public Centre getCentre(@PathVariable int id){
+        return centreService.getById(id);
     }
 
 

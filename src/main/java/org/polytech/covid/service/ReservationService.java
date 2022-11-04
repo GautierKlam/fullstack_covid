@@ -23,14 +23,13 @@ public class ReservationService {
     }
 
     public Reservation getById(int id){
-        return reservationDAO.getReferenceById(id);
+        return reservationDAO.findById(id).get();
         
     }
 
     public Reservation save(Reservation reservation){
-        reservation.setCentre(centreService.getByNom(reservation.getCentre().getNom()));
-        System.out.println(reservation.getPatient().getEmail());
-        Patient patient = patientService.getByEmail(reservation.getPatient().getEmail());
+        reservation.setCentre(centreService.getById(reservation.getCentre().getId()));
+        Patient patient = patientService.getById(reservation.getPatient().getId());
         if (patient==null){
             patientService.save(reservation.getPatient());
         }

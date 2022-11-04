@@ -16,8 +16,11 @@ public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_reservation;
-    private String statut;
+
     private LocalDate date;
+
+    @ManyToOne
+    private Personnel personnel;
 
     @ManyToOne
     private Patient patient;
@@ -29,15 +32,13 @@ public class Reservation {
     public Reservation() {
     }
 
-    public Reservation(String statut, LocalDate date, Patient patient) {
-        this.statut = statut;
+    public Reservation(LocalDate date, Patient patient) {
         this.date = date;
         this.patient = patient;
     }
 
-    
-    public String getStatut() {
-        return statut;
+    public int getId() {
+        return id_reservation;
     }
 
     public LocalDate getDate() {
@@ -48,28 +49,37 @@ public class Reservation {
         return patient;
     }
 
-    public void setId(int id){
-        this.id_reservation = id;
-    }
-
-    public void setStatut(String statut) {
-        this.statut = statut;
-    }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-
-    public void setPatient(Patient patient) {
-        this.patient = patient;
+    public Personnel getPersonnel() {
+        return personnel;
     }
 
     public Centre getCentre() {
         return centre;
     }
 
+    public void setId(int id){
+        this.id_reservation = id;
+    }
+
+    public void setMedecin(Personnel personnel) {
+        this.personnel = personnel;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public void setPersonnel(Personnel personnel) {
+        this.personnel = personnel;
+    }
+
+    public void setPatient(Patient patient) {
+        this.patient = patient;
+    }
+
     public void setCentre(Centre centre) {
         this.centre = centre;
     }
+
 
 }

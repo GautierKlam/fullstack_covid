@@ -1,7 +1,6 @@
 package org.polytech.covid.entities;
 
 import javax.persistence.MappedSuperclass;
-import javax.persistence.OneToOne;
 
 @MappedSuperclass
 public class Personne {
@@ -11,21 +10,16 @@ public class Personne {
     private String prenom;
     private String email;
     private String password;
-    private int numero;
 
-    @OneToOne
-    private Adresse adresse;
 
     public Personne() {
     }
 
-    public Personne(String nom, String prenom, String email, String password, int numero, Adresse adresse) {
+    public Personne(String nom, String prenom, String email, String password) {
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
         this.password = password;
-        this.numero = numero;
-        this.adresse = adresse;
     }
 
     public String getPrenom() {
@@ -40,14 +34,6 @@ public class Personne {
         return password;
     }
 
-    public int getNumero() {
-        return numero;
-    }
-
-    public Adresse getAdresse() {
-        return adresse;
-    }
-
     public void setPrenom(String prenom) {
         this.prenom = prenom;
     }
@@ -58,14 +44,6 @@ public class Personne {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public void setNumero(int numero) {
-        this.numero = numero;
-    }
-
-    public void setAdresse(Adresse adresse) {
-        this.adresse = adresse;
     }
 
     public String getNom() {

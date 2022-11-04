@@ -26,7 +26,7 @@ public class CentreService {
     }
 
     public Centre getById(int id){
-        return centreDAO.getReferenceById(id);
+        return centreDAO.findById(id).get();
     }
 
     public Centre getByNom(String nom){

@@ -29,7 +29,7 @@ public class Centre {
     private Adresse adresse;
 
     @OneToMany(mappedBy = "centre")
-    private List<Medecin> medecins;
+    private List<Personnel> personnels;
 
     @OneToMany(mappedBy = "centre")
     private List<Reservation> reservations;
@@ -38,12 +38,15 @@ public class Centre {
     public Centre() {
     }
 
-    public Centre(String nom, Adresse adresse, List<Medecin> medecins) {
+    public Centre(String nom, Adresse adresse, List<Personnel> personnels) {
         this.nom = nom;
         this.adresse = adresse;
-        this.medecins = medecins;
+        this.personnels = personnels;
     }
 
+    public int getId() {
+        return id_centre;
+    }
     
     public String getNom() {
         return nom;
@@ -53,8 +56,8 @@ public class Centre {
         return adresse;
     }
 
-    public List<Medecin> getMedecins() {
-        return medecins;
+    public List<Personnel> getMedecins() {
+        return personnels;
     }
 
     public void setId(int id){
@@ -69,8 +72,8 @@ public class Centre {
         this.adresse = adresse;
     }
 
-    public void setMedecins(List<Medecin> medecins) {
-        this.medecins = medecins;
+    public void setMedecins(List<Personnel> personnels) {
+        this.personnels = personnels;
     }
 
     
