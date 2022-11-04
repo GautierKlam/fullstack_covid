@@ -1,5 +1,6 @@
 package org.polytech.covid.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.polytech.covid.dao.ReservationRepository;
@@ -22,9 +23,8 @@ public class ReservationService {
         return reservationDAO.findAll();
     }
 
-    public Reservation getById(int id){
-        return reservationDAO.findById(id).get();
-        
+    public Reservation[] getByDate(LocalDate date){
+        return reservationDAO.searchByDate(date);
     }
 
     public Reservation save(Reservation reservation){

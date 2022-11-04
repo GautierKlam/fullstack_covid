@@ -1,5 +1,6 @@
 package org.polytech.covid.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.polytech.covid.entities.Reservation;
@@ -27,8 +28,8 @@ public class ReservationController {
     }
 
     @GetMapping(path = "/reservations/{id}")
-    public Reservation getReservation(@PathVariable int id){
-        return reservationService.getById(id);
+    public Reservation[] getReservation(@PathVariable LocalDate date){
+        return reservationService.getByDate(date);
     }
 
     @PostMapping(path = "/reservation")
