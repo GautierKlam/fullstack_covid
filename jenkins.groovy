@@ -2,7 +2,7 @@ pipeline{
     agent any
     stages{
         
-        stage('Gradle build'){
+        stage('build'){
             steps {
               sh 'gradle build'
             }
