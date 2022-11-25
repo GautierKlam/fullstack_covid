@@ -2,7 +2,9 @@ package org.polytech.covid.controller;
 
 import java.time.LocalDate;
 import java.util.List;
-
+import io.github.bucket4j.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.polytech.covid.entities.Reservation;
 import org.polytech.covid.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,32 +16,74 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import java.time.Duration;
 
 @RequestMapping("api/public/")
 @RestController
 public class ReservationController {
     
+    //rajoute 10 tokens toutes les minutes
+    Refill refill = Refill.intervally(10, Duration.ofMinutes(1));
+    //capacité max de 10 token
+    Bandwidth limit = Bandwidth.classic(10, refill);
+    Bucket bucket = Bucket.builder().addLimit(limit).build();
+
+   
+
+    @GetMapping(value = "/info")
+    public ResponseEntity<String> infos() {
+
+        ConsumptionProbe probe = bucket.tryConsumeAndReturnRemaining(1);
+        if(probe.isConsumed()) {
+            return ResponseEntity.ok()
+                    .header("X-Rate-Limit-Remaining", Long.toString(probe.getRemainingTokens()))
+                    .body("info");
+        }
+        long delaiEnSeconde = probe.getNanosToWaitForRefill() / 1_000_000_000;
+        return ResponseEntity.status(HttpStatus.TOO_MANY_REQUESTS)
+                .header("X-Rate-Limit-Retry-After-Seconds", String.valueOf(delaiEnSeconde))
+                .build();
+    }
+
+
+
     @Autowired
     private ReservationService reservationService;
 
     @GetMapping(path = "/reservations")
-    public List<Reservation> getAll(){
-        return reservationService.findAll();
+    public ResponseEntity<List<Reservation>> getAll(){
+        if(bucket.tryConsume(1)) {
+            return ResponseEntity.ok(reservationService.findAll());
+        }
+        ResponseEntity<List<Reservation>> response = ResponseEntity.status(HttpStatus.TOO_MANY_REQUESTS).build();
+        return response;
     }
 
     @GetMapping(path = "/reservations/{id}")
-    public Reservation[] getReservation(@PathVariable LocalDate date){
-        return reservationService.getByDate(date);
+    public ResponseEntity<Reservation[]> getReservation(@PathVariable LocalDate date){
+        if(bucket.tryConsume(1)) {
+            return ResponseEntity.ok(reservationService.getByDate(date));
+        }
+        ResponseEntity<Reservation[]> response = ResponseEntity.status(HttpStatus.TOO_MANY_REQUESTS).build();
+        return response;
     }
 
     @PostMapping(path = "/reservation")
-    public Reservation save(@RequestBody Reservation reservation){
-        return reservationService.save(reservation);
+    public ResponseEntity<Reservation> save(@RequestBody Reservation reservation){
+        if(bucket.tryConsume(1)) {
+            return ResponseEntity.ok(reservationService.save(reservation));
+        }
+        ResponseEntity<Reservation> response = ResponseEntity.status(HttpStatus.TOO_MANY_REQUESTS).build();
+        return response;
     }
 
     @PutMapping(path = "/reservation/{id}")
-    public Reservation update(@PathVariable int id, @RequestBody Reservation reservation){
-        return reservationService.update(id, reservation);
+    public ResponseEntity<Reservation> update(@PathVariable int id, @RequestBody Reservation reservation){
+        if(bucket.tryConsume(1)) {
+            return ResponseEntity.ok(reservationService.update(id, reservation));
+        }
+        ResponseEntity<Reservation> response = ResponseEntity.status(HttpStatus.TOO_MANY_REQUESTS).build();
+        return response;
     }
 
     @DeleteMapping(path = "/reservation/{id}")
