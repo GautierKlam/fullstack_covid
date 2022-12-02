@@ -31,6 +31,11 @@ public class PersonnelController {
         return personnelService.getById(id);
     }
 
+    @GetMapping(path = "/personnels/centre/{id}")
+    public List<Personnel> getPersonnelByCentreId(@PathVariable int id){
+        return personnelService.getByCentreId(id);
+    }
+
     @PostMapping(path = "/personnel")
     public Personnel save(@RequestBody Personnel personnel){
         return personnelService.save(personnel);

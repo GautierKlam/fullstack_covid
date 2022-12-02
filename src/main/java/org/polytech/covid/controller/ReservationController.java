@@ -59,12 +59,14 @@ public class ReservationController {
         return response;
     }
 
-    @GetMapping(path = "/reservations/{id}")
-    public ResponseEntity<Reservation[]> getReservation(@PathVariable LocalDate date){
+
+    @GetMapping(path = "/reservation/{date}")
+    public ResponseEntity<List<Reservation>> getReservation(@PathVariable String date){
         if(bucket.tryConsume(1)) {
-            return ResponseEntity.ok(reservationService.getByDate(date));
+            LocalDate date2 = LocalDate.parse(date);
+            return ResponseEntity.ok(reservationService.getByDate(date2));
         }
-        ResponseEntity<Reservation[]> response = ResponseEntity.status(HttpStatus.TOO_MANY_REQUESTS).build();
+        ResponseEntity<List<Reservation>> response = ResponseEntity.status(HttpStatus.TOO_MANY_REQUESTS).build();
         return response;
     }
 

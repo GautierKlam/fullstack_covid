@@ -30,9 +30,17 @@ public class PersonnelService {
     }
 
     public Personnel update(int id, Personnel personnel){
-        personnel.setId(id);
-        personnelDAO.deleteById(id);
-        return personnelDAO.save(personnel);
+        Personnel personnelOld = personnelDAO.getReferenceById(id);
+        personnelOld.setCentre(personnel.getCentre());
+        personnelOld.setNom(personnel.getNom());
+        personnelOld.setPrenom(personnel.getPrenom());
+        personnelOld.setEmail(personnel.getEmail());
+        personnelOld.setPassword(personnel.getPassword());
+        return personnelDAO.save(personnelOld);
+    }
+
+    public List<Personnel> getByCentreId(int id){
+        return personnelDAO.searchByCentreId(id);
     }
 
     public void delete(int id){

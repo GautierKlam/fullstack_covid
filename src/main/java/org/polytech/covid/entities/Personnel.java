@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -15,7 +15,7 @@ public class Personnel extends Personne {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_admin;
 
-    @OneToOne
+    @ManyToOne
     private Centre centre;
 
     public Personnel() {
@@ -30,7 +30,7 @@ public class Personnel extends Personne {
         return id_admin;
     }
 
-    public Centre getCentre() {
+    public Centre getCentre(){
         return centre;
     }
 
@@ -38,7 +38,4 @@ public class Personnel extends Personne {
         this.centre = centre;
     }
     
-    public void setId(int id){
-        this.id_admin = id;
-    }
 }

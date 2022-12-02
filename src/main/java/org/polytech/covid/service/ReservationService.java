@@ -23,13 +23,13 @@ public class ReservationService {
         return reservationDAO.findAll();
     }
 
-    public Reservation[] getByDate(LocalDate date){
+    public List<Reservation> getByDate(LocalDate date){
         return reservationDAO.searchByDate(date);
     }
 
     public Reservation save(Reservation reservation){
         reservation.setCentre(centreService.getById(reservation.getCentre().getId()));
-        Patient patient = patientService.getById(reservation.getPatient().getId());
+        Patient patient = patientService.getByEmail(reservation.getPatient().getEmail());
         if (patient==null){
             patientService.save(reservation.getPatient());
         }
