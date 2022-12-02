@@ -5,5 +5,6 @@ RUN gradle build -x test --no-daemon
 
 FROM openjdk:17
 ARG JAR_FILE=/home/gradle/src/build/libs/*.jar
+EXPOSE 8080
 COPY --from=build ${JAR_FILE} application.jar
 ENTRYPOINT ["java", "-jar", "application.jar"]
