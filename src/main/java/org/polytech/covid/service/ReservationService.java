@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.polytech.covid.dao.ReservationRepository;
 import org.polytech.covid.entities.Patient;
+import org.polytech.covid.entities.Personnel;
 import org.polytech.covid.entities.Reservation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,8 @@ public class ReservationService {
     private CentreService centreService;
     @Autowired
     private PatientService patientService;
+    @Autowired
+    private PersonnelService personnelService;
 
     public List<Reservation> findAll(){
         return reservationDAO.findAll();
@@ -43,8 +46,10 @@ public class ReservationService {
         return reservationDAO.save(reservation);
     }
 
-    public Reservation update(int id, Reservation reservation){
-        reservation.setId(id);
+    public Reservation update(int id, Personnel personnel){
+        Reservation reservation = reservationDAO.getReferenceById(id);
+        Personnel personnelNew = personnelService.getByEmail(personnel.getEmail());
+        reservation.setPersonnel(personnelNew);
         return reservationDAO.save(reservation);
     }
 

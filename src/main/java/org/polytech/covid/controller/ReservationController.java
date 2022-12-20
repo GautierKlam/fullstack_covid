@@ -5,6 +5,7 @@ import java.util.List;
 import io.github.bucket4j.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.polytech.covid.entities.Personnel;
 import org.polytech.covid.entities.Reservation;
 import org.polytech.covid.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,9 +93,9 @@ public class ReservationController {
     }
 
     @PutMapping(path = "/reservation/{id}")
-    public ResponseEntity<Reservation> update(@PathVariable int id, @RequestBody Reservation reservation){
+    public ResponseEntity<Reservation> update(@PathVariable int id, @RequestBody Personnel personnel){
         if(bucket.tryConsume(1)) {
-            return ResponseEntity.ok(reservationService.update(id, reservation));
+            return ResponseEntity.ok(reservationService.update(id, personnel));
         }
         ResponseEntity<Reservation> response = ResponseEntity.status(HttpStatus.TOO_MANY_REQUESTS).build();
         return response;
