@@ -10,4 +10,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ReservationRepository extends JpaRepository<Reservation, Integer>{
     List<Reservation> searchByDate(LocalDate date);
+    List<Reservation> searchByDateAndPatientNomStartingWithIgnoringCase(LocalDate date, String nom);
 }

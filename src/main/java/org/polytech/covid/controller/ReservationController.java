@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import java.time.Duration;
 
@@ -64,6 +65,17 @@ public class ReservationController {
     public ResponseEntity<List<Reservation>> getReservation(@PathVariable String date){
         if(bucket.tryConsume(1)) {
             LocalDate date2 = LocalDate.parse(date);
+            return ResponseEntity.ok(reservationService.getByDate(date2));
+        }
+        ResponseEntity<List<Reservation>> response = ResponseEntity.status(HttpStatus.TOO_MANY_REQUESTS).build();
+        return response;
+    }
+
+    @GetMapping(path = "/reservation/{date}/search")
+    public ResponseEntity<List<Reservation>> getReservationByNom(@PathVariable String date, @RequestParam(name = "nom", required = false) String nom){
+        if(bucket.tryConsume(1)) {
+            LocalDate date2 = LocalDate.parse(date);
+            if (nom !=null) return ResponseEntity.ok(reservationService.getByNom(date2, nom));
             return ResponseEntity.ok(reservationService.getByDate(date2));
         }
         ResponseEntity<List<Reservation>> response = ResponseEntity.status(HttpStatus.TOO_MANY_REQUESTS).build();

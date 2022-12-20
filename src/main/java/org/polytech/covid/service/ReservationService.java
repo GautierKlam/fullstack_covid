@@ -27,6 +27,10 @@ public class ReservationService {
         return reservationDAO.searchByDate(date);
     }
 
+    public List<Reservation> getByNom(LocalDate date, String nom){
+        return reservationDAO.searchByDateAndPatientNomStartingWithIgnoringCase(date, nom);
+    }
+
     public Reservation save(Reservation reservation){
         reservation.setCentre(centreService.getById(reservation.getCentre().getId()));
         Patient patient = patientService.getByEmail(reservation.getPatient().getEmail());

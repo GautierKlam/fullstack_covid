@@ -2,8 +2,6 @@ package org.polytech.covid;
 
 import org.polytech.covid.dao.PersonnelRepository;
 
-import java.util.ArrayList;
-
 import org.polytech.covid.dao.AdresseRepository;
 import org.polytech.covid.dao.CentreRepository;
 import org.polytech.covid.dao.PatientRepository;
