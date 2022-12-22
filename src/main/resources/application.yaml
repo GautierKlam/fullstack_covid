@@ -9,3 +9,6 @@ spring:
     hibernate.ddl-auto: create
   liquibase:
     enabled: false
+  security:
+    ignored:
+    - "*.bundle.*"

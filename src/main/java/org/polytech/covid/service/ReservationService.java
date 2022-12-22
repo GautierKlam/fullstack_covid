@@ -48,7 +48,7 @@ public class ReservationService {
 
     public Reservation update(int id, Personnel personnel){
         Reservation reservation = reservationDAO.getReferenceById(id);
-        Personnel personnelNew = personnelService.getByEmail(personnel.getEmail());
+        Personnel personnelNew = personnelService.getByEmail(personnel.getEmail()).get();
         reservation.setPersonnel(personnelNew);
         return reservationDAO.save(reservation);
     }
