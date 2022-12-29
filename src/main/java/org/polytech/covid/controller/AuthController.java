@@ -2,12 +2,18 @@ package org.polytech.covid.controller;
 
 import java.security.Principal;
 import java.util.Base64;
+import java.util.Collection;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.polytech.covid.entities.Personne;
+import org.polytech.covid.entities.Personnel;
 import org.polytech.covid.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,11 +36,10 @@ public class AuthController {
 
     
     @GetMapping("/user")
-    public UserDetails user(HttpServletRequest request){
-        String authToken = request.getHeader("Authorization")
-            .substring("Basic".length()).trim();
-        String username = new String(Base64.getDecoder().decode(authToken)).split(":")[0];
-        return authService.loadUserByUsername(username) ;
+    public Object user(HttpServletRequest request){
+        SecurityContext context = SecurityContextHolder.getContext();
+        Authentication authentication = context.getAuthentication();      
+        return authentication.getPrincipal();
     }
     
 }

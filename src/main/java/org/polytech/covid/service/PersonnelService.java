@@ -1,14 +1,14 @@
 package org.polytech.covid.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.polytech.covid.dao.PersonnelRepository;
+import org.polytech.covid.dao.RoleRepository;
 import org.polytech.covid.entities.Personnel;
+import org.polytech.covid.entities.Role;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +16,9 @@ import org.springframework.stereotype.Service;
 public class PersonnelService {
     
     private PersonnelRepository personnelDAO;
+    
+    @Autowired
+    private RoleRepository roleDAO;
     
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -43,7 +46,12 @@ public class PersonnelService {
     }
 
     public Personnel save(Personnel personnel){
-        return personnelDAO.save(personnel);
+        ArrayList<Role> roles = new ArrayList<>();
+        for (Role role : personnel.getRoles()) {
+            roles.add(roleDAO.searchByRole(role.getRole()));
+        }
+        Personnel personnelNew = new Personnel(personnel.getNom(), personnel.getPrenom(),personnel.getEmail(),personnel.getPassword(),roles,personnel.getCentre());
+        return personnelDAO.save(personnelNew);
     }
 
     public Personnel update(int id, Personnel personnel){
@@ -53,6 +61,13 @@ public class PersonnelService {
         personnelOld.setPrenom(personnel.getPrenom());
         personnelOld.setEmail(personnel.getEmail());
         personnelOld.setPassword(personnel.getPassword());
+        personnelOld.setRole(List.of());
+        ArrayList<Role> roles = new ArrayList<>();
+        for (Role role : personnel.getRoles()) {
+            roles.add(roleDAO.searchByRole(role.getRole()));
+        }
+        personnelOld.setRole(roles);
+        
         return personnelDAO.save(personnelOld);
     }
 

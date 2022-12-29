@@ -2,6 +2,7 @@ package org.polytech.covid;
 
 import org.polytech.covid.dao.PersonnelRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.polytech.covid.dao.AdresseRepository;
@@ -37,8 +38,9 @@ public class CovidApiApplication {
             centreInterface.save(new Centre("CHRU Nancy Brabois",new Adresse("Nancy","54511","FRANCE","Rue de Morvan")));
             centreInterface.save(new Centre("CHR Thionville",new Adresse("Metz","57530","FRANCE","Allee du chateau")));
             centreInterface.save(new Centre("CHRU Strasbourg",new Adresse("Strasbourg","67000","FRANCE","place de l'hopitale")));
-            roleRepository.save(new Role("ADMIN"));
             roleRepository.save(new Role("MEDECIN"));
+            roleRepository.save(new Role("ADMIN"));
+            roleRepository.save(new Role("SUPER"));
             personnelInterface.save(new Personnel("Tenede", "Bryan", "tenede@bryan.com", passwordEncoder.encode("password"), List.of(roleRepository.searchByRole("ADMIN"), roleRepository.searchByRole("MEDECIN")), centreInterface.getReferenceById(1)));
 
         };

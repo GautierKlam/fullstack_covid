@@ -1,9 +1,15 @@
 package org.polytech.covid.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.polytech.covid.entities.Personnel;
+import org.polytech.covid.entities.Role;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.TestingAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -16,9 +22,17 @@ public class AuthService implements UserDetailsService {
     private PersonnelService personnelService;
 
     public Personnel login(String email, String password){
-        UserDetails personnel = loadUserByUsername(email);
-        if (personnelService.getPasswordEncoder().matches(password, personnel.getPassword())) return personnelService.getByEmail(email).get();
+        Personnel personnel = personnelService.getByEmail(email).get();
+        if (personnelService.getPasswordEncoder().matches(password, personnel.getPassword())){
+            return personnel;
+        } 
         else return null;
+    }
+
+    public Object logout() {
+        SecurityContext context = SecurityContextHolder.createEmptyContext();            
+        SecurityContextHolder.setContext(context);
+        return context.getAuthentication().getPrincipal();
     }
 
     @Override
