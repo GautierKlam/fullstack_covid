@@ -55,20 +55,20 @@ public class PersonnelService {
     }
 
     public Personnel update(int id, Personnel personnel){
-        Personnel personnelOld = personnelDAO.getReferenceById(id);
-        personnelOld.setCentre(personnel.getCentre());
-        personnelOld.setNom(personnel.getNom());
-        personnelOld.setPrenom(personnel.getPrenom());
-        personnelOld.setEmail(personnel.getEmail());
-        personnelOld.setPassword(personnel.getPassword());
-        personnelOld.setRole(List.of());
+        Personnel personnelNew = personnelDAO.getReferenceById(id);
+        personnelNew.setCentre(personnel.getCentre());
+        personnelNew.setNom(personnel.getNom());
+        personnelNew.setPrenom(personnel.getPrenom());
+        personnelNew.setEmail(personnel.getEmail());
+        personnelNew.setPassword(personnel.getPassword());
+        personnelNew.setRole(List.of());
         ArrayList<Role> roles = new ArrayList<>();
         for (Role role : personnel.getRoles()) {
             roles.add(roleDAO.searchByRole(role.getRole()));
         }
-        personnelOld.setRole(roles);
+        personnelNew.setRole(roles);
         
-        return personnelDAO.save(personnelOld);
+        return personnelDAO.save(personnelNew);
     }
 
     public List<Personnel> getByCentreId(int id){
