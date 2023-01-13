@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import java.time.Duration;
 
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "*", exposedHeaders = "Etag")
 @RequestMapping("api/public/")
 @RestController
 public class ReservationController {
